@@ -1,6 +1,5 @@
 'use strict';
 
-// FRAMEWORK
 var framework={
 Get:{
 	byId: function(id){
