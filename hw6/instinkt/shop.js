@@ -45,4 +45,6 @@ setInterval(function(){
   
   el.appendChild(closeIcons);
   shop[0].appendChild(el);
+
+
 },1500)
