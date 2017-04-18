@@ -64,51 +64,6 @@ var myFramework = {
   pageLeft(el)
   {
     return el.offsetLeft;
-  },
-
-  css()
-  {
-    if(arguments.length == 2)
-    {
-      var el = arguments[0];
-      var page = arguments[1];
-      return window.getComputedStyle(el).page;
-    }
-    else
-    {
-      var el = arguments[0];
-      var page = arguments[1];
-      var v = arguments[2];
-      el.style[page] = v;
-    }
-  },
-
-  Get : {
-
-    byId(t)
-    {
-      return document.getElementById(t);
-    },
-
-    byClass(t)
-    {
-      return document.getElementsByClassName(t);
-    },
-
-    byTag(t)
-    {
-      return document.getElementsByTagName(t);
-    },
-
-    bySelector(t)
-    {
-      return document.querySelector(t);
-    },
-
-    bySelectorAll(t)
-    {
-      return document.querySelectorAll(t);
-    }
   }
 } 
 }
