@@ -42,6 +42,21 @@ var myFramework = {
     }
   },
 
+  Get:{
+  byId: function(el){
+    return document.getElementById(el);
+  },
+  byTag:function(el){
+    return document.getElementsByTagName(el);
+  },
+  byClass:function(el){
+    return document.getElementsByClassName(el);
+  },
+  bySelector:function(el){
+    return document.querySelector(el);
+  },
+},
+
   dispatch:function(t, e){
     var event = new Event(e);
     t.dispatchEvent(event);
@@ -55,15 +70,5 @@ var myFramework = {
   {
     return el.clientHeight;
   },
-
-  pageTop(el)
-  {
-    return el.offsetTop;
-  },
-
-  pageLeft(el)
-  {
-    return el.offsetLeft;
-  }
 } 
 }
