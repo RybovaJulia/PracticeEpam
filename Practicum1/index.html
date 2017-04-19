@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="main.css">
+  </head>
+ 
+<body bgcolor="lightgreen">
+<br><center><font color="black" size="5">Инженерный Калькулятор</font></center><br>
+<FORM NAME="sci-calc">
+<TABLE CELLSPACING="5" CELLPADDING="1" border="7">
+<TR>
+<TD COLSPAN="10" ALIGN="center">
+<INPUT NAME="display" VALUE="0" SIZE="40" MAXLENGTH="40"></TD>
+</TR>
+<TR>
+<TD Align="center"><INPUT type="button" value=" exp " class="button" onclick="if (checkNum(this.form.display.value)) { exp(this.form) }"></TD>
+<TD ALIGN="center"><INPUT type="button" value=" 7 " class="button"  onclick="addChar(this.form.display, '7')"></TD>
+<TD ALIGN="center"><INPUT type="button" value=" 8 " class="button"  onclick="addChar(this.form.display, '8')"></TD>
+<TD ALIGN="center"><INPUT type="button" value=" 9 " class="button" onclick="addChar(this.form.display, '9')"></TD>
+<TD ALIGN="center"><INPUT type="button" value=" / " class="button" onclick="addChar(this.form.display, '/')"></TD>
+</TR>
+<TR>
+<TD ALIGN="center"><INPUT type="button" value=" ln " class="button" onclick="if (checkNum(this.form.display.value)) { ln(this.form) }"></TD>
+<TD ALIGN="center"><INPUT type="button" value=" 4 " class="button"  onclick="addChar(this.form.display, '4')"></TD>
+<TD ALIGN="center"><INPUT type="button" value=" 5 " class="button"  onclick="addChar(this.form.display, '5')"></TD>
+<TD ALIGN="center"><INPUT type="button" value=" 6 " class="button" onclick="addChar(this.form.display, '6')"></TD>
+<TD ALIGN="center"><INPUT type="button" value=" * " class="button"  onclick="addChar(this.form.display, '*')"></TD>
+</TR>
+<TR>
+<TD ALIGN="center"><INPUT type="button" value=" sqrt " class="button" onclick="if (checkNum(this.form.display.value)) { sqrt(this.form) }"></TD>
+<TD ALIGN="center"><INPUT type="button" value=" 1 " class="button" onclick="addChar(this.form.display, '1')"></TD>
+<TD ALIGN="center"><INPUT type="button" value=" 2 " class="button" onclick="addChar(this.form.display, '2')"></TD>
+<TD ALIGN="center"><INPUT type="button" value=" 3 " class="button" onclick="addChar(this.form.display, '3')"></TD>
+<TD ALIGN="center"><INPUT type="button" value=" - " class="button"  onclick="addChar(this.form.display, '-')"></TD>
+</TR>
+<TR>
+<TD ALIGN="center"><INPUT type="button" value=" sq " class="button"  onclick="if (checkNum(this.form.display.value)) { square(this.form) }"></TD>
+<TD ALIGN="center"><INPUT type="button" value=" 0 " class="button"  onclick="addChar(this.form.display, '0')"></TD>
+<TD ALIGN="center"><INPUT type="button" value=" . " class="button"  onclick="addChar(this.form.display, '.')"></TD>
+<TD ALIGN="center"><INPUT type="button" value=" +/- " class="button"  onclick="changeSign(this.form.display)"></TD>
+<TD ALIGN="center"><INPUT type="button" value=" + " class="button"  onclick="addChar(this.form.display, '+')"></TD>
+</TR>
+<TR>
+<TD ALIGN="center"><INPUT type="button" value=" ( " class="button"  onclick="addChar(this.form.display, '(')"></TD>
+<TD ALIGN="center"><INPUT type="button" value="cos" class="button"  onclick="if (checkNum(this.form.display.value)) { cos(this.form) }"></TD>
+<TD ALIGN="center"><INPUT type="button" value=" sin" class="button" onclick="if (checkNum(this.form.display.value)) { sin(this.form) }"></TD>
+<TD ALIGN="center"><INPUT type="button" value =" tan" class="button"  onclick="if (checkNum(this.form.display.value)) { tan(this.form) }"></TD>
+<TD ALIGN="center"><INPUT type="button" value=" ) " class="button"  onclick="addChar(this.form.display, ')')"></TD>
+</TR>
+
+<TR>
+<TD ALIGN="center"><INPUT type="button" value="acos" class="button"  onclick="if (checkNum(this.form.display.value)) { acos(this.form) }"></TD>
+<TD ALIGN="center"><INPUT type="button" value=" asin" class="button" onclick="if (checkNum(this.form.display.value)) { asin(this.form) }"></TD>
+<TD ALIGN="center"><INPUT type="button" value =" atan" class="button"  onclick="if (checkNum(this.form.display.value)) { atan(this.form) }"></TD>
+<TD ALIGN="center"><INPUT type="button" value=" PI " class="button"  onclick="addChar(this.form.display, '3.141592653589793238462 ')"></TD>
+<TD ALIGN="center"><INPUT type="button" value=" cube " class="button"  onclick="if (checkNum(this.form.display.value)) { cube(this.form) }"></TD>
+</TR>
+
+
+<TR>
+<TD ALIGN="center"><INPUT type="button" value="C" class="button" onclick="this.form.display.value = 0 "></TD>
+<TD ALIGN="center" COLSPAN="3"><INPUT type="button" value="backspace" class="bigbutton" onclick="deleteChar(this.form.display)"></TD>
+<TD ALIGN="center"><INPUT type="button" value="=" name="enter" class="button"  onclick="if (checkNum(this.form.display.value)) { compute(this.form) }"></TD>
+</TR>
+</TABLE>
+</FORM> 
+	<script src="myscript.js"></script>
+  </body>
+</html>
