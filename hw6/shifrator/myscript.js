@@ -12,8 +12,6 @@ btn_shifr.addEventListener("click", function(){
       deshifrator.value = result;
 });
 
-
-
 var shifrator = document.getElementById("Shifrator");
 var btn_deshifr = document.getElementById("btn_deshifr");
 btn_deshifr.addEventListener("click", function(){
