@@ -16,9 +16,6 @@ public class RoutePage extends BasePage {
     @FindBy(id = "submitButton")
     WebElement submitButton;
 
-    @FindBy(xpath = "//*[@id=\"tickets\"]/div/div[1]/table/thead/tr[1]/th[2]/div/h3")
-    WebElement message;
-
     @FindBy(id = "journey-type-return")
     WebElement returnRatio;
 
