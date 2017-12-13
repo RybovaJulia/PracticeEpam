@@ -36,9 +36,7 @@ public class RoutePage extends BasePage {
 
     @FindBy(xpath = "//*[@id=\"timetable\"]/h1")
     WebElement swap;
-
-
-
+    
     public RoutePage(WebDriver driver) {
         super(driver);
     }
