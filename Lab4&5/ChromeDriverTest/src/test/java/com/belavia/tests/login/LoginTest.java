@@ -46,12 +46,6 @@ public class LoginTest extends FunctionalTest {
 
         assertEquals(LOGIN_EXPECTED_MASSAGE, homePage.confirmationTitle());
     }
-    
-    @Test(priority = 2)
-    public void screeningPage(){
-        ScreeningPage screeningPage = new ScreeningPage(driver);
-        assertTrue(screeningPage.isClientsListExist());
-    }
 }
 
    
