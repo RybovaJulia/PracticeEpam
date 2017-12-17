@@ -16,7 +16,10 @@ public class DriverTest {
     @BeforeTest
     public void openPage() {
         System.setProperty("webdriver.chrome.driver","src/test/res/chromedriver.exe");
+        
         driver = new ChromeDriver();
+        
+        driver.manage().timeouts().pageLoadTimeout(25, TimeUnit.SECONDS);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
@@ -25,9 +28,9 @@ public class DriverTest {
         driver.manage().deleteAllCookies();
     }
 
-    @AfterTest
-    public static void tearDown() {
-        driver.close();
+    @AfterTest(description = "Stop browser")
+    public void stopBrowser() {
+        driver.quit();
     }
 
 }
