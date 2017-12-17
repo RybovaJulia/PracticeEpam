@@ -20,21 +20,6 @@ public class RouteTest extends DriverTest {
     private static final String RETURN_ROUTE = "RETURN";
     private static final String EXPECTED_SWAP = "Moscow (Any) to Minsk  (Any)";
 
-
-    @Test (priority = 1)
-    public void oneWayRouteMinskMoscowToday(){
-        driver.get(PATH);
-
-        RoutePage routePage = new RoutePage(driver);
-        assertTrue(routePage.isInitialized());
-
-        routePage.enterRoute(ORIGIN_STATION, DESTINATION_STATION);
-        routePage.setOneWayRatioTicket();
-        routePage.submit();
-
-        assertEquals(TODAY_EXPECTED_DATE, routePage.confirmationOneWayTitle());
-    }
-
     @Test (priority = 0)
     public void returnRouteMinskMoscowToday(){
         driver.get(PATH);
@@ -47,6 +32,19 @@ public class RouteTest extends DriverTest {
         routePage.submit();
 
         assertEquals(RETURN_ROUTE, routePage.confirmationReturnTitle());
+        
+        @Test (priority = 1)
+    public void oneWayRouteMinskMoscowToday(){
+        driver.get(PATH);
+
+        RoutePage routePage = new RoutePage(driver);
+        assertTrue(routePage.isInitialized());
+
+        routePage.enterRoute(ORIGIN_STATION, DESTINATION_STATION);
+        routePage.setOneWayRatioTicket();
+        routePage.submit();
+
+        assertEquals(TODAY_EXPECTED_DATE, routePage.confirmationOneWayTitle());
     }
 
     @Test (priority = 2)
