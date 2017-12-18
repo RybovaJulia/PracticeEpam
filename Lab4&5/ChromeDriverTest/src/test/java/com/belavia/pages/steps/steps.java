@@ -64,7 +64,7 @@ public class Steps {
     }
 
     public String changePlaceOfEmpl(String placeOfEmployment) {
-        ProfilePage profilePage = new ProfilePage(driver);
+        LoginPage loginPage = new loginPage(driver);
         profilePage.openPage();
 
         profilePage.changePlaceOfEmpl(placeOfEmployment);
