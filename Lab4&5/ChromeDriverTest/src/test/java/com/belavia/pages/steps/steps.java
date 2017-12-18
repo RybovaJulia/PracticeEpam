@@ -5,47 +5,94 @@ package com.belavia.pages.departures.DeparturesPage;
         import org.openqa.selenium.support.FindBy;
         import org.openqa.selenium.Keys;
 
-public class DeparturesPage extends BasePage{
-        
-    private final String BASE_URL = "https://booking.belavia.by/";
+public class Steps {
 
-    private final Logger logger   = LogManager.getRootLogger();
+    private WebDriver driver;
 
-    public BookFlightsPage(WebDriver webDriver) {
-        super(webDriver);
-        PageFactory.initElements(this.webDriver, this);
+    private final Logger logger = LogManager.getRootLogger();
+
+    public void initBrowser()
+    {
+        driver = DriverSingleton.getDriver();
     }
 
-    @FindBy(id = "OriginLocation_Combobox")
-    private WebElement originLocationInput;
-
-    @FindBy(id = "DestinationLocation_Combobox")
-    private WebElement destinationLocationInput;
-
-    @FindBy(className = "DepartureDate_Datepicker")
-    private WebElement departureDateInput;
-    
-    @FindBy(className = "ReturnDate_Datepicker")
-    private WebElement returnDateInput;
-    
-    @FindBy(className = "btn-b2-green")
-    private WebElement searchBtn;
-    
-    @FindBy(linkText = "Журнал OnAir")
-    private WebElement onAirBtn;
-    
-
-    public void searchDestination(String originLocation, String destinationLocation, String departureDate, String returnDate){
-        originLocationInput.sendKeys(originLocation);
-        destinationLocationInput.sendKeys(destinationLocation);
-        departureDateInput.sendKeys(departureDate);
-        returnDateInput.sendKeys(returnDate);
-        searchBtn.click();
-        logger.info("search destination performed");
-    }
-    
-    public void openOnAirPage(){
-        onAirBtn.click();
+    public void closeDriver() {
+        driver.quit();
     }
 
+
+    public boolean accessToMainPage() {
+        MainPage mainPage = new MainPage(driver);
+        mainPage.openPage();
+
+        return mainPage.isLogoAvailable();
+    }
+
+    public boolean checkMenu() {
+        MainPage mainPage = new MainPage(driver);
+        mainPage.openPage();
+
+        return mainPage.isMenuDisplayed();
+    }
+
+    public String login(String userId, String password) {
+        MainPage mainPage = new MainPage(driver);
+        mainPage.openPage();
+
+        mainPage.login(userId,password);
+
+        return mainPage.getUsername();
+    }
+
+    public String changePassportId(String passportId) {
+        ProfilePage profilePage = new ProfilePage(driver);
+        profilePage.openPage();
+
+         profilePage.changePassportId(passportId);
+
+         return profilePage.getPassportId();
+    }
+
+    public String changeCountry(String country) {
+        ProfilePage profilePage = new ProfilePage(driver);
+        profilePage.openPage();
+
+        profilePage.changeCountry(country);
+
+        return profilePage.getCountry();
+
+    }
+
+    public String changePlaceOfEmpl(String placeOfEmployment) {
+        ProfilePage profilePage = new ProfilePage(driver);
+        profilePage.openPage();
+
+        profilePage.changePlaceOfEmpl(placeOfEmployment);
+
+        return profilePage.getPlaceOfEmpl();
+    }
+
+    public boolean checkAccessToTte() {
+        TimetablePage timetablePage = new TimetablePage(driver);
+        timetablePage.openPage();
+
+        return timetablePage.isPageOpened();
+    }
+
+    public boolean bookFlights(String flyFrom, String flyTo) {
+        TimetablePage timetablePage = new TimetablePage(driver);
+        timetablePage.openPage();
+
+        timetablePage.book(flyFrom, flyTo);
+
+        return timetablePage.isFlightsBooked();
+    }
+
+    public boolean canCheckBooking() {
+        TimetablePage timetablePage = new TimetablePage(driver);
+        timetablePage.openPage();
+
+        return timetablePage.bookingCheck();
+
+    }
 }
