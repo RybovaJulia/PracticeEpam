@@ -9,8 +9,6 @@ public class HomePage extends BasePage {
     private static final Logger logger = LogManager.getRootLogger();
     public final String BASE_URL = "https://belavia.by/";
 
-    @FindBy(css = ".logo > a:nth-child(1) > img:nth-child(1)")
-    private WebElement logo;
     
     @FindBy(xpath = "//*[@id=\"select-main-menu\"]")
     private WebElement menu;
