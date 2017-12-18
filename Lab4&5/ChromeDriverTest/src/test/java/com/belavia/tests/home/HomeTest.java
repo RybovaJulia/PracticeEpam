@@ -21,8 +21,8 @@ public class HomeTest {
     }
 
     @Test
-    public void accessToMainPageTest() {
-        Assert.assertTrue(steps.accessToMainPage());
+    public void accessToHomePageTest() {
+        Assert.assertTrue(steps.accessToHomePage());
     }
 
     @Test
