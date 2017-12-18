@@ -13,16 +13,19 @@ public class LoginPage extends BasePage {
 
     @FindBy(xpath = "//*[@id=\"Document_number\"]")
     private WebElement passportIdInp;
+    
     @FindBy(css = "form .ui-corner-all span")
     private WebElement countryInp;
+    
     @FindBy(css = ".first-txt button")
     private WebElement submitChangesBtn;
     private String currentCountry;
+    
     @FindBy(xpath = "//*[@id=\"Appellation\"]")
     private WebElement placeInp;
     private String placeOfEmpl;
 
-    public ProfilePage(WebDriver driver) {
+    public LoginPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
     }
