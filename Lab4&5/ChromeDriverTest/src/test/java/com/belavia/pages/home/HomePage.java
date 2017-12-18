@@ -10,7 +10,6 @@ public class HomePage extends BasePage {
    private final Logger logger   = LogManager.getRootLogger();
 
    private final String BASE_URL = "https://belavia.by/";
-
    
      public HomePage(WebDriver webDriver) {
         super(webDriver);
@@ -29,14 +28,11 @@ public class HomePage extends BasePage {
     @FindBy(className = "btn-b2-login")
     private WebElement signInSubmitBtn;
     
-    
-    
     @FindBy(id="select-lang")
     WebElement changeLanguageBtn;
 
     @FindBy(xpath = "//a[@data-iso='EN']")
     WebElement languageToChoose;
-
 
     @Override
     public void open() {
