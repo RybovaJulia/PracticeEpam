@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 import static com.thoughtworks.selenium.SeleneseTestBase.assertEquals;
 import static com.thoughtworks.selenium.SeleneseTestBase.assertTrue;
 
-public class HomeTest extends DriverTest {
+public class HomeTest {
 
     private static final String  USER_ID = "10011416192";
     private static final String PASSWORD = "123456789";
