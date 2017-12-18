@@ -11,21 +11,16 @@ public class Steps {
 	
 
 	    private final Logger logger = LogManager.getRootLogger();
-	
 
 	    public void initBrowser()
 	    {
-	        driver = DriverSingleton.getDriver();
+	        driver = DriverTest.getDriver();
 	    }
 	
-
 	    public void closeDriver() {
 	        driver.quit();
 	    }
 	
-
-	
-
 	    public boolean accessToHomePage() {
 	        HomePage homePage = new HomePage(driver);
 	        homePage.openPage();
@@ -60,9 +55,7 @@ public class Steps {
 	        LoginPage loginPage = new LoginPage(driver);
 	        loginPage.openPage();
 	
-
 	         loginPage.changePassportId(passportId);
-	
 
 	         return loginPage.getPassportId();
 	    }
@@ -72,16 +65,12 @@ public class Steps {
 	        LoginPage loginPage = new LoginPage(driver);
 	        loginPage.openPage();
 	
-
 	        loginPage.changeCountry(country);
-	
 
 	        return loginPage.getCountry();
-	
 
 	    }
 	
-
 	    public String changePlaceOfEmpl(String placeOfEmployment) {
 	        LoginPage loginPage = new loginPage(driver);
 	        loginPage.openPage();
@@ -89,11 +78,9 @@ public class Steps {
 
 	        loginPage.changePlaceOfEmpl(placeOfEmployment);
 	
-
 	        return loginPage.getPlaceOfEmpl();
 	    }
 	
-
 	    public boolean checkAccessToTte() {
 	        RoutePage routePage = new RoutePage(driver);
 	        routePage.openPage();
@@ -101,7 +88,6 @@ public class Steps {
 
 	        return routePage.isPageOpened();
 	    }
-	
 
 	    public boolean bookFlights(String flyFrom, String flyTo) {
 	        RoutePage routePage = new RoutePage(driver);
