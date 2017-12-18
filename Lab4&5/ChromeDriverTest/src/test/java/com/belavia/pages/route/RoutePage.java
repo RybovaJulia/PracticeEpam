@@ -8,38 +8,76 @@ import org.openqa.selenium.support.FindBy;
 
 public class RoutePage extends BasePage {
     
-    private final String BASE_URL = "https://belavia.by/time-table/";
+    private static final Logger logger = LogManager.getRootLogger();
+    
+    public final String BASE_URL = "https://belavia.by/time-table/";
 
-    private final Logger logger   = LogManager.getRootLogger();
+    @FindBy(xpath = "//*[@id=\"OriginLocation_Combobox\"]")
+    private WebElement fromInp;
+    
+    @FindBy(css = "#ibe div.col-group > div:nth-child(2) label")
+    private WebElement toInp;
+    
+    @FindBy(css = "div.col-mb-6:nth-child(1) > div:nth-child(1) > a:nth-child(3)")
+    private WebElement departureDataInp;
+    
+    @FindBy(css = "div.col-mb-6:nth-child(2) > div:nth-child(1) > a:nth-child(3)")
+    private WebElement returnDataInp;
+    
+    @FindBy(css = "#step-2 .btn-b2-green")
+    private WebElement searchBtn;
+    
+    @FindBy(css = "#navtab > ul > li.active > a")
+    private WebElement checkBookingTag;
+    
+    @FindBy(css = "li.active")
+    private WebElement bookingStatusTag;
+    @FindBy(id = "tripCasePnr")
+    
+    private WebElement reservationCodeInp;
 
-    public TimetablePage(WebDriver webDriver) {
-        super(webDriver);
-        PageFactory.initElements(this.webDriver, this);
+
+    public TimetablePage(WebDriver driver) {
+        super(driver);
+        PageFactory.initElements(driver,this);
     }
-
-    @FindBy(id = "origin_Combobox")
-    private WebElement inputOrigin;
-
-    @FindBy(id = "destination_Combobox")
-    private WebElement inputDestination;
-
-    @FindBy(id = "getTimeTable")
-    private WebElement getTimeTableBtn;
 
     @Override
-    public void open() {
-        webDriver.navigate().to(BASE_URL);
-        logger.info("Time Table page opened");
+    public void openPage() {
+        logger.info("timetable");
+        driver.navigate().to(BASE_URL);
     }
 
-    public void searchTimetable(String origin, String destination){
-        inputOrigin.sendKeys(origin);
-        inputDestination.sendKeys(destination);
-        searchBtn.click();
-        logger.info("search time table performed");
+
+    public boolean isPageOpened() {
+        return fromInp.isDisplayed();
     }
 
+    public void book(String flyFrom, String flyTo) {
+
+        Actions actions = new Actions(driver);
+        actions
+                .sendKeys(fromInp,flyFrom)
+                .sendKeys(toInp,flyTo)
+                .pause(2000)
+                .click(departureDataInp)
+                .pause(1000)
+                .click(returnDataInp)
+                .pause(2000)
+                .click(searchBtn)
+                .pause(2000)
+                .build()
+                .perform();
+    }
+
+
+    public boolean isFlightsBooked() {
+        return checkBookingTag.isDisplayed();
+    }
+
+    public boolean bookingCheck() {
+        bookingStatusTag.click();
+
+        return reservationCodeInp.isDisplayed();
+    }
 }
-  
-
-   
