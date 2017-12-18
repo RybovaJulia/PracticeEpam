@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 import static com.thoughtworks.selenium.SeleneseTestBase.assertEquals;
 import static com.thoughtworks.selenium.SeleneseTestBase.assertTrue;
 
-public class HomePageTest extends FunctionalTest {
+public class HomePageTest {
     
     private static final String  USER_ID = "100114162345679";
     private static final String PASSWORD = "12345678912345";
