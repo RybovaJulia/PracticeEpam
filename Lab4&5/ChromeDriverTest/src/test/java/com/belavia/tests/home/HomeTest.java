@@ -7,38 +7,41 @@ import org.testng.annotations.Test;
 import static com.thoughtworks.selenium.SeleneseTestBase.assertEquals;
 import static com.thoughtworks.selenium.SeleneseTestBase.assertTrue;
 
-public class DeparturesTest extends DriverTest {
+public class HomeTest extends DriverTest {
 
-    private static final String PATH = "https://booking.belavia.by";
-    private static final String FROM_STATION = "Minsk National Airport";
-    private static final String TO_STATION = "Sheremetyevo International Airport";
-    private static final String EXPECTED_DEPARTURES_MESSAGE = "Departures from Minsk National Airport to Sheremetyevo International Airport";
-    private static final String EXPECTED_ARRIVALS_MESSAGE = "Arrivals at Minsk National Airport via Sheremetyevo International Airport";
-    
-    @Test(priority = 0)
-    public void departuresMinskMoscow(){
-        driver.get(PATH);
-
-        DeparturesPage departuresPage = new DeparturesPage(driver);
-        assertTrue(departuresPage.isInitialized());
-
-        departuresPage.enterRoute(FROM_STATION, TO_STATION);
-        departuresPage.submit();
-
-        assertEquals(EXPECTED_DEPARTURES_MESSAGE, departuresPage.confirmationDeparturesArrivalsTitle());
+    private static final String  USER_ID = "10011416192";
+    private static final String PASSWORD = "123456789";
+    public static final String EXPECTED_NAME = "JULIA RYBOVA";
+    private Steps steps;
+    @BeforeMethod(description = "Init browser")
+    public void setUp()
+    {
+        steps = new Steps();
+        steps.initBrowser();
     }
 
-    @Test (priority = 1)
-    public void arrivalsMinskMoscow(){
-        driver.get(PATH);
+    @Test
+    public void accessToMainPageTest() {
+        Assert.assertTrue(steps.accessToMainPage());
+    }
 
-        DeparturesPage departuresPage = new DeparturesPage(driver);
-        assertTrue(departuresPage.isInitialized());
+    @Test
+    public void menuTest() {
+        Assert.assertTrue(steps.checkMenu());
+    }
 
-        departuresPage.arrivals();
-        departuresPage.enterRoute(FROM_STATION, TO_STATION);
-        departuresPage.submit();
+    @Test(description = "auth test")
+    public void authTest() {
 
-        assertEquals(EXPECTED_ARRIVALS_MESSAGE, departuresPage.confirmationDeparturesArrivalsTitle());
+        String username = steps.login(USER_ID,PASSWORD);
+        Assert.assertEquals(username, EXPECTED_NAME);
+    }
+
+
+
+    @AfterMethod(description = "Stop Browser")
+    public void stopBrowser()
+    {
+        steps.closeDriver();
     }
 }
