@@ -37,7 +37,7 @@ public class RoutePage extends BasePage {
     private WebElement reservationCodeInp;
 
 
-    public TimetablePage(WebDriver driver) {
+    public RoutePage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver,this);
     }
