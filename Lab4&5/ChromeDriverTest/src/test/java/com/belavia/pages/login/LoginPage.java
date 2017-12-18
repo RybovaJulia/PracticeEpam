@@ -7,43 +7,98 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class LoginPage extends BasePage {
+    
+    private static final Logger logger = LogManager.getRootLogger();
+    public final String BASE_URL = "https://belavia.by/leader/profile/";
 
-    @FindBy(id="email")
-    WebElement email;
+    @FindBy(xpath = "//*[@id=\"Document_number\"]")
+    private WebElement passportIdInp;
+    @FindBy(css = "form .ui-corner-all span")
+    private WebElement countryInp;
+    @FindBy(css = ".first-txt button")
+    private WebElement submitChangesBtn;
+    private String currentCountry;
+    @FindBy(xpath = "//*[@id=\"Appellation\"]")
+    private WebElement placeInp;
+    private String placeOfEmpl;
 
-    @FindBy(id="password")
-    WebElement password;
-
-    @FindBy(name="login")
-    WebElement login;
-
-
-    @FindBy(xpath = "//*[@id=\"ContentPanel\"]/form/div[1]/div/div/div[1]/strong")
-    private WebElement massage;
-
-    public LoginPage(WebDriver driver) {
-
+    public ProfilePage(WebDriver driver) {
         super(driver);
-    }
-    public boolean isInitialized() {
-        return email.isDisplayed();
+        PageFactory.initElements(driver, this);
     }
 
-    public void enterName(String firstName, String lastName){
-        this.email.clear();
-        this.email.sendKeys(firstName);
 
-        this.password.clear();
-        this.password.sendKeys(lastName);
+    @Override
+    public void openPage() {
+        logger.info("openned profile");
+        driver.navigate().to(BASE_URL);
     }
 
-    public HomePage submit(){
-        login.click();
-        return new HomePage(driver);
+
+    public void changePassportId(String passportId) {
+
+        ((JavascriptExecutor)driver).executeScript("window.scrollBy(0,"+countryInp.getLocation().getY()+");");
+
+
+        Actions actions = new Actions(driver);
+        actions
+                .click(passportIdInp)
+                .keyDown(Keys.CONTROL)
+                .sendKeys(Keys.chord("a"))
+                .keyUp(Keys.CONTROL)
+                .pause(1000)
+                .sendKeys(passportId)
+                .pause(2000)
+                .moveToElement(countryInp)
+                .pause(2000)
+                .click(submitChangesBtn)
+                .build()
+                .perform();
     }
 
-    public boolean isNotifictionEnable(){
-        return massage.isEnabled(); }
-    public String getNotificationMassage() {
-        return  massage.getText();}
+    public String getPassportId() {
+        System.out.println("getId");
+        return passportIdInp.getAttribute("value");
+    }
+
+    public void changeCountry(String country) {
+
+        Actions actions = new Actions(driver);
+        actions
+                .pause(4000)
+                .click(countryInp)
+                .pause(4000)
+                .click(driver.findElement(By.tagName("option")).findElement(By.xpath(country)))
+                .pause(2000)
+                .click(submitChangesBtn)
+                .build()
+                .perform();
+    }
+
+
+    public String getCountry() {
+        return countryInp.getText();
+    }
+
+    public void changePlaceOfEmpl(String placeOfEmployment) {
+        Actions actions = new Actions(driver);
+
+        actions
+                .click(placeInp)
+                .keyDown(Keys.CONTROL)
+                .sendKeys(Keys.chord("a"))
+                .keyUp(Keys.CONTROL)
+                .pause(1000)
+                .sendKeys(placeInp,placeOfEmployment)
+                .pause(2000)
+                .click(submitChangesBtn)
+                .build()
+                .perform();
+    }
+
+    public String getPlaceOfEmpl() {
+        return placeInp.getText();
+    }
 }
+
+   
