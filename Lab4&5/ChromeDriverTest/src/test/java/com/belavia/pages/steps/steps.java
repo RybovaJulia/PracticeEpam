@@ -8,91 +8,121 @@ package com.belavia.pages.departures.DeparturesPage;
 public class Steps {
 
     private WebDriver driver;
+	
 
-    private final Logger logger = LogManager.getRootLogger();
+	    private final Logger logger = LogManager.getRootLogger();
+	
 
-    public void initBrowser()
-    {
-        driver = DriverSingleton.getDriver();
-    }
+	    public void initBrowser()
+	    {
+	        driver = DriverSingleton.getDriver();
+	    }
+	
 
-    public void closeDriver() {
-        driver.quit();
-    }
+	    public void closeDriver() {
+	        driver.quit();
+	    }
+	
 
+	
 
-    public boolean accessToMainPage() {
-        MainPage mainPage = new MainPage(driver);
-        mainPage.openPage();
+	    public boolean accessToHomePage() {
+	        HomePage homePage = new HomePage(driver);
+	        homePage.openPage();
+	
 
-        return mainPage.isLogoAvailable();
-    }
+	        return homePage.isLogoAvailable();
+	    }
+	
 
-    public boolean checkMenu() {
-        MainPage mainPage = new MainPage(driver);
-        mainPage.openPage();
+	    public boolean checkMenu() {
+	        HomePage homePage = new HomePage(driver);
+	        homePage.openPage();
+	
 
-        return mainPage.isMenuDisplayed();
-    }
+	        return homePage.isMenuDisplayed();
+	    }
+	
 
-    public String login(String userId, String password) {
-        MainPage mainPage = new MainPage(driver);
-        mainPage.openPage();
+	    public String login(String userId, String password) {
+	        HomePage homePage = new HomePage(driver);
+	        homePage.openPage();
+	
 
-        mainPage.login(userId,password);
+	        homePage.login(userId,password);
+	
 
-        return mainPage.getUsername();
-    }
+	        return homePage.getUsername();
+	    }
+	
 
-    public String changePassportId(String passportId) {
-        ProfilePage profilePage = new ProfilePage(driver);
-        profilePage.openPage();
+	    public String changePassportId(String passportId) {
+	        LoginPage loginPage = new LoginPage(driver);
+	        loginPage.openPage();
+	
 
-         profilePage.changePassportId(passportId);
+	         loginPage.changePassportId(passportId);
+	
 
-         return profilePage.getPassportId();
-    }
+	         return loginPage.getPassportId();
+	    }
+	
 
-    public String changeCountry(String country) {
-        ProfilePage profilePage = new ProfilePage(driver);
-        profilePage.openPage();
+	    public String changeCountry(String country) {
+	        LoginPage loginPage = new LoginPage(driver);
+	        loginPage.openPage();
+	
 
-        profilePage.changeCountry(country);
+	        loginPage.changeCountry(country);
+	
 
-        return profilePage.getCountry();
+	        return loginPage.getCountry();
+	
 
-    }
+	    }
+	
 
-    public String changePlaceOfEmpl(String placeOfEmployment) {
-        LoginPage loginPage = new loginPage(driver);
-        profilePage.openPage();
+	    public String changePlaceOfEmpl(String placeOfEmployment) {
+	        LoginPage loginPage = new loginPage(driver);
+	        loginPage.openPage();
+	
 
-        profilePage.changePlaceOfEmpl(placeOfEmployment);
+	        loginPage.changePlaceOfEmpl(placeOfEmployment);
+	
 
-        return profilePage.getPlaceOfEmpl();
-    }
+	        return loginPage.getPlaceOfEmpl();
+	    }
+	
 
-    public boolean checkAccessToTte() {
-        TimetablePage timetablePage = new TimetablePage(driver);
-        timetablePage.openPage();
+	    public boolean checkAccessToTte() {
+	        RoutePage routePage = new RoutePage(driver);
+	        routePage.openPage();
+	
 
-        return timetablePage.isPageOpened();
-    }
+	        return routePage.isPageOpened();
+	    }
+	
 
-    public boolean bookFlights(String flyFrom, String flyTo) {
-        TimetablePage timetablePage = new TimetablePage(driver);
-        timetablePage.openPage();
+	    public boolean bookFlights(String flyFrom, String flyTo) {
+	        RoutePage routePage = new RoutePage(driver);
+	        routePage.openPage();
+	
 
-        timetablePage.book(flyFrom, flyTo);
+	        routePage.book(flyFrom, flyTo);
+	
 
-        return timetablePage.isFlightsBooked();
-    }
+	        return routePage.isFlightsBooked();
+	    }
+	
 
-    public boolean canCheckBooking() {
-        TimetablePage timetablePage = new TimetablePage(driver);
-        timetablePage.openPage();
+	    public boolean canCheckBooking() {
+	        RoutePage routePage = new RoutePage(driver);
+	        routePage.openPage();
+	
 
-        return timetablePage.bookingCheck();
+	        return routePage.bookingCheck();
+	
 
-    }
-}
+	    }
+	}
+
