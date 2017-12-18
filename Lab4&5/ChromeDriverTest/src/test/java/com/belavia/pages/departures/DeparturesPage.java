@@ -6,69 +6,46 @@ package com.belavia.pages.departures.DeparturesPage;
         import org.openqa.selenium.Keys;
 
 public class DeparturesPage extends BasePage{
-    @FindBy(id = "fromStation")
-    WebElement fromStation;
+        
+    private final String BASE_URL = "https://booking.belavia.by/";
 
-    @FindBy(id = "toStation")
-    WebElement toStation;
+    private final Logger logger   = LogManager.getRootLogger();
 
-    @FindBy(xpath = "//*[@id=\"app\"]/div/div[1]/div[2]/div/div/div[2]/form/div[2]/div[3]/button")
-    WebElement submitButton;
-
-    @FindBy(id = "swapStations")
-    WebElement swapButton;
-
-    @FindBy(xpath = "//*[@id=\"app\"]/div/div[1]/div[2]/div/div/div[3]/div[2]/div[3]/div/div[1]/div[2]/h3")
-    WebElement swapText;
-
-    @FindBy(id = "radioArrivals")
-    WebElement radioArrivals;
-
-    @FindBy(xpath = "radioDepartures")
-    WebElement radioDepartures;
-
-    @FindBy(xpath = "//*[@id=\"app\"]/div/div[1]/div[2]/div/div/div[1]/h1/span")
-    WebElement confirmationDeparturesArrivalsTitle;
-
-
-    public DeparturesPage(WebDriver driver) {
-        super(driver);
+    public BookFlightsPage(WebDriver webDriver) {
+        super(webDriver);
+        PageFactory.initElements(this.webDriver, this);
     }
 
-    public boolean isInitialized() {
-        return fromStation.isDisplayed();
+    @FindBy(id = "OriginLocation_Combobox")
+    private WebElement originLocationInput;
+
+    @FindBy(id = "DestinationLocation_Combobox")
+    private WebElement destinationLocationInput;
+
+    @FindBy(className = "DepartureDate_Datepicker")
+    private WebElement departureDateInput;
+    
+    @FindBy(className = "ReturnDate_Datepicker")
+    private WebElement returnDateInput;
+    
+    @FindBy(className = "btn-b2-green")
+    private WebElement searchBtn;
+    
+    @FindBy(linkText = "Журнал OnAir")
+    private WebElement onAirBtn;
+    
+
+    public void searchDestination(String originLocation, String destinationLocation, String departureDate, String returnDate){
+        originLocationInput.sendKeys(originLocation);
+        destinationLocationInput.sendKeys(destinationLocation);
+        departureDateInput.sendKeys(departureDate);
+        returnDateInput.sendKeys(returnDate);
+        searchBtn.click();
+        logger.info("search destination performed");
+    }
+    
+    public void openOnAirPage(){
+        onAirBtn.click();
     }
 
-    public void enterRoute(String originStation, String destinationStation) {
-        this.fromStation.clear();
-        this.fromStation.sendKeys(originStation);
-        this.fromStation.sendKeys(Keys.TAB);
-
-        this.toStation.clear();
-        this.toStation.sendKeys(destinationStation);
-        this.fromStation.sendKeys(Keys.TAB);
-        this.fromStation.sendKeys(Keys.ENTER);
-    }
-
-    public  void arrivals() {
-        radioArrivals.click();
-    }
-
-
-    public void submit() {
-        submitButton.click();
-    }
-
-
-    public void swap(){
-        swapButton.click();
-    }
-
-    public String swapTitle() {
-        return swapText.getText();
-    }
-
-    public String confirmationDeparturesArrivalsTitle(){
-        return confirmationDeparturesArrivalsTitle.getText();
-    }
 }
