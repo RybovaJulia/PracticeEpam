@@ -8,14 +8,46 @@ import org.testng.annotations.Test;
 import static com.thoughtworks.selenium.SeleneseTestBase.assertEquals;
 import static com.thoughtworks.selenium.SeleneseTestBase.assertTrue;
 
-public class LoginTest extends FunctionalTest {
+public class HomePageTest extends FunctionalTest {
 
-    private static final String PATH = "https://belavia.by/leader/registration";
-    private static final String USER_VALID_EMAIL = "rybova.julia98@gmail.com";
-    private static final String USER_VALID_PASSWORD = "december1795";
-    private static final String USER_INVALID_EMAIL = "12345tru6@gmail.com";
-    private static final String LOGIN_FAILED_EXPECTED_MASSAGE = "Invalid email or password.";
-    private static final String LOGIN_EXPECTED_MASSAGE = "Sign out";
+    private static final String  USER_ID = "10011526537623843456678";
+    private static final String PASSWORD = "123456789";
+    public static final String EXPECTED_NAME = "JULIA RYBOVA";
+        
+    private Steps steps;
+        
+    @BeforeMethod(description = "Init browser")
+    public void setUp()
+    {
+        steps = new Steps();
+        steps.initBrowser();
+    }
+
+    @Test
+    public void accessToMainPageTest() {
+        Assert.assertTrue(steps.accessToMainPage());
+    }
+
+    @Test
+    public void menuTest() {
+        Assert.assertTrue(steps.checkMenu());
+    }
+
+    @Test(description = "auth test")
+    public void authTest() {
+
+        String username = steps.login(USER_ID,PASSWORD);
+        Assert.assertEquals(username, EXPECTED_NAME);
+    }
+
+
+
+    @AfterMethod(description = "Stop Browser")
+    public void stopBrowser()
+    {
+        steps.closeDriver();
+    }
+}
 
  @Test(priority = 0)
     public void loginFailed(){
