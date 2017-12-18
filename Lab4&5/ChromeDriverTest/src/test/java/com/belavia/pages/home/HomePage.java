@@ -31,7 +31,7 @@ public class HomePage extends BasePage {
     @FindBy(css = ".form-horizontal .btn-b2-login")
     private WebElement submitLoginBtn;
 
-    public MainPage(WebDriver driver) {
+    public HomePage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
     }
